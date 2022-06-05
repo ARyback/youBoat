@@ -7,7 +7,6 @@ from .serializers import CarSerializer
 
 # <<<<<<<<<<<<<<<<< EXAMPLE FOR STARTER CODE USE <<<<<<<<<<<<<<<<<
 
-
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_all_cars(request):

@@ -6,7 +6,8 @@ class Boat(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     capacity = models.IntegerField()
     description = models.CharField(max_length=255)
-    location = models.CharField(max_length=100)
+    city = models.CharField(max_length=100)
+    state = models.CharField(max_length=100)
     lake = models.CharField(max_length=100)
     picture = models.ImageField()
     LOW = 'LO'
