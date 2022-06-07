@@ -1,9 +1,21 @@
-# from django.db import models
+from django.db import models
 from django.contrib.auth.models import AbstractUser
-
+# from backend.boats.models import Boat
 
 class User(AbstractUser):
+    first_name = models.CharField(max_length=255, null=True)
+    last_name = models.CharField(max_length=255, null=True)
+    address = models.CharField(max_length=255, null=True)
+    city = models.CharField(max_length=255, null=True)
+    state = models.CharField(max_length=255, null=True)
+    zipcode = models.IntegerField(null=True)
+    number = models.IntegerField(null=True)
+    email = models.CharField(max_length=255, null=True)
+    paypal = models.CharField(max_length=255, null=True)
+    is_owner = models.BooleanField('owner status', default=False)
+    is_renter = models.BooleanField('renter status', default=False)
     pass
+
     '''
     This is a custom version of the built in User class
     It contains all of the built in fields and functionality of the standard User
