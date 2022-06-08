@@ -10,7 +10,9 @@ class User(AbstractUser):
     state = models.CharField(max_length=255, null=True)
     zipcode = models.IntegerField(null=True)
     number = models.IntegerField(null=True)
+    # String for number
     email = models.CharField(max_length=255, null=True)
+    #Might not need Paypal in the end
     paypal = models.CharField(max_length=255, null=True)
     is_owner = models.BooleanField('owner status', default=False)
     is_renter = models.BooleanField('renter status', default=False)
