@@ -4,5 +4,6 @@ from .models import Boat
 class BoatSerializer(serializers.ModelSerializer):
     class Meta:
         model = Boat
-        fields = ['id', 'capacity', 'description', 'city', 'state', 'lake', 'picture', 'boat_rating', 'boat_type', 'user_id']
+        # fields = ['id', 'capacity', 'description', 'city', 'state', 'lake', 'picture', 'boat_rating', 'boat_type', 'user_id']
+        fields = ['id', 'capacity', 'description', 'city', 'state', 'lake', 'picture', 'boat_rating', 'boat_type', 'owner_id', 'renter_id']
         depth = 1
