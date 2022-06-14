@@ -1,0 +1,556 @@
+{
+	"info": {
+		"_postman_id": "50e0365e-0713-4644-bee2-b075771ddc61",
+		"name": "youBoat",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20044510"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register_User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"jkohn\",\r\n    \"password\": \"p2ssw0rd?!\",\r\n    \"first_name\": \"Henrietta\",\r\n    \"last_name\": \"Aarons\",\r\n    \"address\": \"275 West Streets\",\r\n    \"city\": \"West Allises\",\r\n    \"state\": \"WI\",\r\n    \"zipcode\": 53227,\r\n    \"number\": \"4143272685\",\r\n    \"email\": \"james@fullpackers.com\",\r\n    \"is_owner\": false,\r\n    \"is_renter\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/auth/register/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"register",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login_User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"jkohn\",\r\n    \"password\": \"p2ssw0rd?!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/auth/login/?",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"login",
+								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh_Access",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refresh\": \"PASTE REFRESH TOKEN FROM LOGIN HERE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/auth/login/refresh/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"login",
+								"refresh",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET user profile (protected))",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Length",
+								"value": "<calculated when request is sent>",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authentication",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU2MDgyMzkyLCJpYXQiOjE2NTUyMTgzOTIsImp0aSI6ImVjNWNiNWEwN2Y2ZTQ2YzRhNTRlMzEyZmY5YzM4OWIxIiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJhZGFtciIsImZpcnN0X25hbWUiOiJBZGFtIn0.hBlh5_v1_iu6nMYb0TWB3WTHkC4Gc7g0qv5Vpp3C--o",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/auth/userview/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"userview",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cars",
+			"item": [
+				{
+					"name": "GET all cars (unprotected)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/cars/all/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"cars",
+								"all",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET cars for user (protected)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU1ODMxNTA0LCJpYXQiOjE2NTQ5Njc1MDQsImp0aSI6IjdkN2E5NmU0MGFlMDQ5YzU4OTYxOWQyOTk2MTc4OTdiIiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJhZGFtciIsImZpcnN0X25hbWUiOiJBZGFtIn0.zPMTDhFzvM_dOLzDAprXgStlaqlk5mozjvajgYmrgSE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/cars/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"cars",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST new car for user (protected)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU1NzY0MTE1LCJpYXQiOjE2NTQ5MDAxMTUsImp0aSI6IjkwZTI4NDU2MDQ5YTRlNjE4MDk3ODVlMmYyNmY4M2QxIiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJhZGFtciIsImZpcnN0X25hbWUiOiJBZGFtIn0.5vN6oktyzCZIBmXqFSo2JJUgBdkYP1Ro_AAGJSkTdH4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"make\": \"Toyota\",\n    \"model\": \"Crusader\",\n    \"year\": 1999\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/cars/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"cars",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Boats",
+			"item": [
+				{
+					"name": "GET all boats (unprotected)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/boats/all/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"boats",
+								"all",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET boats for owner (protected))",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU1OTI2NDQyLCJpYXQiOjE2NTUwNjI0NDIsImp0aSI6ImYzNGNjOTBkMzFhZTQxZmE4NGZjOGFjMjlmNzQxZGE2IiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJhZGFtciIsImZpcnN0X25hbWUiOiJBZGFtIn0.Ge-jCMHD3qTGU1HwHiEgF51Dosyhmy7HdcQUBeHNUaE",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Length",
+								"value": "<calculated when request is sent>",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/boats/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"boats",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET boats to renter (protected)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Length",
+								"value": "<calculated when request is sent>",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU1OTMzMTY2LCJpYXQiOjE2NTUwNjkxNjYsImp0aSI6Ijc3M2M4MTZlMmJjODQxODQ4NTE4NzJhMzdmNTk1OWU0IiwidXNlcl9pZCI6MjEsInVzZXJuYW1lIjoiamtvaG4iLCJmaXJzdF9uYW1lIjoiSGVucmlldHRhIn0.uxQKarE7DKJXgY8zPO8dZMwb332TgwMV0He1p06sq9s ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/boats/renterboats/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"boats",
+								"renterboats",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST new boat for user (protected))",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU1OTI2NDQyLCJpYXQiOjE2NTUwNjI0NDIsImp0aSI6ImYzNGNjOTBkMzFhZTQxZmE4NGZjOGFjMjlmNzQxZGE2IiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJhZGFtciIsImZpcnN0X25hbWUiOiJBZGFtIn0.Ge-jCMHD3qTGU1HwHiEgF51Dosyhmy7HdcQUBeHNUaE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"capacity\": 4,\r\n    \"description\": \"Crusader\",\r\n    \"city\": \"West Allis\",\r\n    \"state\": \"WI\",\r\n    \"lake\": \"Lake Michigan\",\r\n    \"boat_rating\": 5.00,\r\n    \"boat_type\": \"JE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/boats/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"boats",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE boat by id (protected)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/boats/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"boats",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET boat by id (protected-owner)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/boats/2/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"boats",
+								"2",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET boat by id (protected-renter)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU1OTMzMTY2LCJpYXQiOjE2NTUwNjkxNjYsImp0aSI6Ijc3M2M4MTZlMmJjODQxODQ4NTE4NzJhMzdmNTk1OWU0IiwidXNlcl9pZCI6MjEsInVzZXJuYW1lIjoiamtvaG4iLCJmaXJzdF9uYW1lIjoiSGVucmlldHRhIn0.uxQKarE7DKJXgY8zPO8dZMwb332TgwMV0He1p06sq9s",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/boats/9/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"boats",
+								"9",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "LentBoats",
+			"item": [
+				{
+					"name": "GET all lent boats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/lentboats/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"lentboats",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET lent boat for renter (protected))",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer",
+								"type": "text"
+							}
+						]
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
