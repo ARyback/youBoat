@@ -7,14 +7,14 @@ from authentication.models import User
 class Boat(models.Model):
     owner = models.ForeignKey(
         User, 
-        on_delete=models.RESTRICT,
+        on_delete=models.CASCADE,
         limit_choices_to={"is_owner":True},
         related_name="owner",
         null=True,
         )
     renter = models.ForeignKey(
         User, 
-        on_delete=models.CASCADE,
+        on_delete=models.PROTECT,
         limit_choices_to={"is_renter":True},
         related_name="renter",
         null=True,
@@ -24,7 +24,7 @@ class Boat(models.Model):
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=100)
     lake = models.CharField(max_length=100)
-    picture = models.ImageField()
+    picture = models.ImageField(null=True)
     boat_rating = models.DecimalField(max_digits=3, decimal_places=2)
     PONTOON = 'PO'
     FISHING = 'FI'
@@ -33,10 +33,10 @@ class Boat(models.Model):
     SPEEDBOAT = 'SP'
     BOAT_CHOICES = [
         (PONTOON, 'Pontoon'),
-        (FISHING, 'Fishing'),
         (CHARTERFISHING, 'Charterfishing'),
         (JETSKI,'Jetski'),
         (SPEEDBOAT, 'Speedboat'),
+        (FISHING, 'Fishing'),
     ]
     boat_type = models.CharField(
         max_length=2,

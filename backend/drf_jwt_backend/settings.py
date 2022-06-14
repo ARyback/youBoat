@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'authentication.apps.AuthenticationConfig',
     'corsheaders',
     'boats',
+    'lentboats',
     # 'boats.apps.BoatsConfig',
     'cars.apps.CarsConfig'  # This app is for example use only
 ]

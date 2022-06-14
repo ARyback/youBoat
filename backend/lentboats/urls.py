@@ -1,11 +1,10 @@
 from django.urls import path, include
-from boats import views
+from lentboats import views
 
 # <<<<<<<<<<<<<<<<< EXAMPLE FOR STARTER CODE USE <<<<<<<<<<<<<<<<<
 
 urlpatterns = [
-    path('', views.user_boats),
+    path('', views.get_all_lentboats),
+    path('ownerboats/', views.owner_boats),
     path('renterboats/', views.renter_boats),
-    path('<int:pk>/', views.boat_detail),
-    path('all/', views.get_all_boats),
 ]
