@@ -22,7 +22,7 @@ class RegisterView(generics.CreateAPIView):
 
 @api_view(['GET', 'PUT'])
 @permission_classes([IsAuthenticated])
-def user_view(request, pk):
+def user_view(request):
     user = get_object_or_404(User, pk=request.user.id)
     if request.method == 'GET':
         serializer = RegistrationSerializer(user)

@@ -10,6 +10,11 @@ class LentBoat(models.Model):
     day = models.DateField()
     start_time = models.TimeField()
     end_time = models.TimeField()
+    # owner = models.ForeignKey(User, on_delete=models.PROTECT,
+    #     limit_choices_to={"is_owner":True},
+    #     related_name="boat_owner",
+    #     null=True,
+    #     )
     renter = models.ForeignKey(User, on_delete=models.PROTECT,
         limit_choices_to={"is_renter":True},
         related_name="boat_renter",
@@ -17,4 +22,5 @@ class LentBoat(models.Model):
         )
     boat = models.ForeignKey(Boat, on_delete=models.CASCADE,
     )
+    is_active = models.BooleanField('active status', default=False)
     

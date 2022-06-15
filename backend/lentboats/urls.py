@@ -5,6 +5,6 @@ from lentboats import views
 
 urlpatterns = [
     path('', views.get_all_lentboats),
-    path('ownerboats/', views.owner_boats),
+    # path('ownerboats/', views.owner_boats),
     path('renterboats/', views.renter_boats),
 ]
