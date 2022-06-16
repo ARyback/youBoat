@@ -15,6 +15,20 @@ def get_all_lentboats(request):
     serializer = LentBoatSerializer(lentboats, many=True)
     return Response(serializer.data)
 
+@api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticated])
+def renter_boats(request):
+    if request.method == 'POST':
+        serializer = LentBoatSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(renter=request.user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'GET':
+        lentboats = LentBoat.objects.filter(renter_id=request.user.id)
+        serializer = LentBoatSerializer(lentboats, many=True)
+        return Response(serializer.data)
+
 # @api_view(['GET'])
 # @permission_classes([IsAuthenticated])
 # def owner_boats(request):
@@ -45,17 +59,3 @@ def get_all_lentboats(request):
 #     elif request.method == 'DELETE':
 #         boat.delete()
 #         return Response(status=status.HTTP_204_NO_CONTENT)
-
-@api_view(['GET', 'POST'])
-@permission_classes([IsAuthenticated])
-def renter_boats(request):
-    if request.method == 'POST':
-        serializer = LentBoatSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save(renter=request.user)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    elif request.method == 'GET':
-        lentboats = LentBoat.objects.filter(renter_id=request.user.id)
-        serializer = LentBoatSerializer(lentboats, many=True)
-        return Response(serializer.data)

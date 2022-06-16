@@ -13,7 +13,7 @@ const RegisterPage = () => {
     city: "",
     state: "",
     zipcode: 0,
-    number: 0,
+    number: "",
     is_owner: false,
     is_renter: false,
   };
@@ -110,7 +110,7 @@ const RegisterPage = () => {
           Number:{" "}
           <input
             type="number"
-            name="number"
+            name="text"
             value={formData.number}
             onChange={handleInputChange}
           />
@@ -121,7 +121,7 @@ const RegisterPage = () => {
             type="checkbox"
             name="is_owner"
             value={checkedOne.is_owner}
-            onChange={handleSubmit}
+            onChange={handleInputChange}
           />
         </label>
         <label>
@@ -130,7 +130,7 @@ const RegisterPage = () => {
             type="checkbox"
             name="is_renter"
             value={checkedTwo.is_renter}
-            onChange={handleSubmit}
+            onChange={handleInputChange}
           />
         </label>
         <p style={{ fontSize: "12px" }}>
