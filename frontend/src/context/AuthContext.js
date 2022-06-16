@@ -35,6 +35,12 @@ export const AuthProvider = ({ children }) => {
         email: registerData.email,
         first_name: registerData.firstName,
         last_name: registerData.lastName,
+        city: registerData.city,
+        state: registerData.state,
+        zipcode: registerData.zipcode,
+        number: registerData.number,
+        is_owner: registerData.is_owner,
+        is_renter: registerData.is_renter,
       };
       let response = await axios.post(`${BASE_URL}/register/`, finalData);
       if (response.status === 201) {
@@ -45,7 +51,8 @@ export const AuthProvider = ({ children }) => {
         navigate("/register");
       }
     } catch (error) {
-      console.log(error.response.data);
+      // console.log(error.response.data);
+      console.log(error);
     }
   };
 
@@ -63,7 +70,7 @@ export const AuthProvider = ({ children }) => {
         navigate("/register");
       }
     } catch (error) {
-      console.log(error.response.data);
+      console.log(error);
       setIsServerError(true);
       navigate("/register");
     }

@@ -10,11 +10,26 @@ const RegisterPage = () => {
     password: "",
     firstName: "",
     lastName: "",
+    city: "",
+    state: "",
+    zipcode: 0,
+    number: 0,
+    is_owner: false,
+    is_renter: false,
   };
   const [formData, handleInputChange, handleSubmit] = useCustomForm(
     defaultValues,
     registerUser
   );
+
+  const [checkedOne, setCheckedOne] = React.useState(false);
+  const [checkedTwo, setCheckedTwo] = React.useState(false);
+  const handleCheckOne = () => {
+    setCheckedOne(!checkedOne);
+  };
+  const handleCheckTwo = () => {
+    setCheckedTwo(!checkedTwo);
+  };
 
   return (
     <div className="container">
@@ -62,6 +77,60 @@ const RegisterPage = () => {
             name="password"
             value={formData.password}
             onChange={handleInputChange}
+          />
+        </label>
+        <label>
+          City:{" "}
+          <input
+            type="text"
+            name="city"
+            value={formData.city}
+            onChange={handleInputChange}
+          />
+        </label>
+        <label>
+          State:{" "}
+          <input
+            type="text"
+            name="state"
+            value={formData.state}
+            onChange={handleInputChange}
+          />
+        </label>
+        <label>
+          Zipcode:{" "}
+          <input
+            type="number"
+            name="zipcode"
+            value={formData.zipcode}
+            onChange={handleInputChange}
+          />
+        </label>
+        <label>
+          Number:{" "}
+          <input
+            type="number"
+            name="number"
+            value={formData.number}
+            onChange={handleInputChange}
+          />
+        </label>
+        <label>
+          Owner:{" "}
+          <input
+            type="checkbox"
+            name="is_owner"
+            value={checkedOne.is_owner}
+            onChange={handleSubmit}
+          />
+        </label>
+        <label>
+          Renter:{" "}
+          <input
+            type="checkbox"
+            name="is_renter"
+            value={checkedTwo.is_renter}
+            onChange={handleSubmit}
           />
         </label>
         <p style={{ fontSize: "12px" }}>
