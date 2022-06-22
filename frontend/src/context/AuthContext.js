@@ -35,13 +35,15 @@ export const AuthProvider = ({ children }) => {
         email: registerData.email,
         first_name: registerData.firstName,
         last_name: registerData.lastName,
+        address: registerData.address,
         city: registerData.city,
         state: registerData.state,
-        zipcode: registerData.zipcode,
+        zipcode: parseInt(registerData.zipcode),
         number: registerData.number,
         is_owner: registerData.is_owner,
         is_renter: registerData.is_renter,
       };
+      console.log(finalData);
       let response = await axios.post(`${BASE_URL}/register/`, finalData);
       if (response.status === 201) {
         console.log("Successful registration! Log in to access token");

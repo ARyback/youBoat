@@ -5,6 +5,7 @@ from authentication.models import User
 
 # Create your models here.
 class Boat(models.Model):
+    boat_name = models.CharField(max_length=255, null=True)
     owner = models.ForeignKey(
         User, 
         on_delete=models.CASCADE,
@@ -24,25 +25,14 @@ class Boat(models.Model):
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=100)
     lake = models.CharField(max_length=100)
-    picture = models.ImageField(null=True)
+    picture = models.CharField(null=True, max_length=255)
     boat_rating = models.DecimalField(max_digits=3, decimal_places=2)
-    PONTOON = 'PO'
-    FISHING = 'FI'
-    CHARTERFISHING = 'CH'
-    JETSKI = 'JE'
-    SPEEDBOAT = 'SP'
-    BOAT_CHOICES = [
-        (PONTOON, 'Pontoon'),
-        (CHARTERFISHING, 'Charterfishing'),
-        (JETSKI,'Jetski'),
-        (SPEEDBOAT, 'Speedboat'),
-        (FISHING, 'Fishing'),
-    ]
-    boat_type = models.CharField(
-        max_length=2,
-        choices=BOAT_CHOICES,
-        default=PONTOON,
-        )
+    boat_type = models.CharField(max_length=100)
+    option_one = models.CharField(null=True, max_length=255)
+    option_two = models.CharField(null=True, max_length=255)
+    option_three = models.CharField(null=True, max_length=255)
+    renter_selection = models.CharField(null=True, max_length=255)
+    is_active = models.BooleanField('active status', default=False)
 
 
     

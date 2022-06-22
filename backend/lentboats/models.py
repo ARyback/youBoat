@@ -7,9 +7,9 @@ from boats.models import Boat
 
 # Create your models here.
 class LentBoat(models.Model):
-    day = models.DateField()
-    start_time = models.TimeField()
-    end_time = models.TimeField()
+    day = models.CharField(max_length=255)
+    start_time = models.CharField(max_length=255)
+    end_time = models.CharField(max_length=255)
     # owner = models.ForeignKey(User, on_delete=models.PROTECT,
     #     limit_choices_to={"is_owner":True},
     #     related_name="boat_owner",

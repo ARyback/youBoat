@@ -10,6 +10,7 @@ const RegisterPage = () => {
     password: "",
     firstName: "",
     lastName: "",
+    address: "",
     city: "",
     state: "",
     zipcode: 0,
@@ -21,15 +22,6 @@ const RegisterPage = () => {
     defaultValues,
     registerUser
   );
-
-  const [checkedOne, setCheckedOne] = React.useState(false);
-  const [checkedTwo, setCheckedTwo] = React.useState(false);
-  const handleCheckOne = () => {
-    setCheckedOne(!checkedOne);
-  };
-  const handleCheckTwo = () => {
-    setCheckedTwo(!checkedTwo);
-  };
 
   return (
     <div className="container">
@@ -80,6 +72,15 @@ const RegisterPage = () => {
           />
         </label>
         <label>
+          Address:{" "}
+          <input
+            type="text"
+            name="address"
+            value={formData.address}
+            onChange={handleInputChange}
+          />
+        </label>
+        <label>
           City:{" "}
           <input
             type="text"
@@ -109,8 +110,8 @@ const RegisterPage = () => {
         <label>
           Number:{" "}
           <input
-            type="number"
-            name="text"
+            type="text"
+            name="number"
             value={formData.number}
             onChange={handleInputChange}
           />
@@ -120,7 +121,7 @@ const RegisterPage = () => {
           <input
             type="checkbox"
             name="is_owner"
-            value={checkedOne.is_owner}
+            value={formData.is_owner}
             onChange={handleInputChange}
           />
         </label>
@@ -129,7 +130,7 @@ const RegisterPage = () => {
           <input
             type="checkbox"
             name="is_renter"
-            value={checkedTwo.is_renter}
+            value={formData.is_renter}
             onChange={handleInputChange}
           />
         </label>
