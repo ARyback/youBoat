@@ -11,6 +11,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import AddBoatPage from "./pages/AddBoatPage/AddBoatPage";
 import SearchRentalPage from "./pages/SearchRentalPage/SearchRentalPage";
+import ScheduleBoatRentalPage from "./pages/ScheduleBoatRentalPage/ScheduleBoatRentalPage";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -18,7 +19,8 @@ import Footer from "./components/Footer/Footer";
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
-import ScheduleBoatRental from "./pages/ScheduleRentalPage/ScheduleRentalPage";
+import { BrowserRouter as Router } from "react-router-dom";
+import RentalConfirmationPage from "./pages/RentalConfirmationPage/RentalConfirmationPage";
 
 function App() {
 
@@ -52,19 +54,13 @@ function App() {
     {boatsCollection&&<img src={boatsCollection[10].picture}/>} */}
       <Navbar />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <PrivateRoute>
-              <HomePage />
-            </PrivateRoute>
-          }
-        />
+        <Route path="/" element={<PrivateRoute><HomePage /></PrivateRoute>} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/addboat" element={<PrivateRoute><AddBoatPage /></PrivateRoute>} />
         <Route path="/searchrental" element={<PrivateRoute><SearchRentalPage /></PrivateRoute>} />
-        <Route path="/schedule" element={<PrivateRoute><ScheduleBoatRental /></PrivateRoute>} />
+        <Route path="/schedule/:boatId" element={<PrivateRoute><ScheduleBoatRentalPage /></PrivateRoute>} />
+        <Route path="/rentalconfirmation" element={<RentalConfirmationPage />} />
       </Routes>
       <Footer />
     </div>

@@ -111,7 +111,8 @@ const SearchRentalPage = (props) => {
                       <td>{boat.option_three}</td>
                       <td>{boat.is_active.toString()}</td>
                       <td>{boat.renter_selection}</td>
-                      <td><button onClick={() => navigate('/schedule')}>Schedule</button></td>
+                      <td> <Link to={`/schedule/${boat.id}`}> <button onClick={() => navigate('/schedule')}>Schedule</button>
+                      </Link></td>
                     </tr>
                   );
                 })}

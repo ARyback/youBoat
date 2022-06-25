@@ -6,8 +6,8 @@ import axios from 'axios'
 
 let initialValues = {
     boat_name: "",
-    owner: "", 
-    renter: "",
+    // owner: "", 
+    // renter: "",
     capacity: 0, 
     description: "", 
     city: "",
@@ -30,7 +30,7 @@ const AddBoatPage = () => {
 
     async function postNewBoat(){
         try {
-            let response = await axios.post("http://127.0.0.1:8000/api/boats/", formData, {
+            let response = await axios.post(`http://127.0.0.1:8000/api/boats/`, formData, {
                 headers: {
                     Authorization: 'Bearer ' + token
                 }
@@ -168,7 +168,7 @@ const AddBoatPage = () => {
           Actively Used:{" "}
           <input
             type="checkbox"
-            name="option_three"
+            name="is_active"
             value={formData.is_active}
             onChange={handleInputChange}
           />

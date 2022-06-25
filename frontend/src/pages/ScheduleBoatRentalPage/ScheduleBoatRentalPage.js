@@ -1,56 +1,66 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import useCustomForm from "../../hooks/useCustomForm";
 import axios from "axios";
 
-const ScheduleBoatRental = (props) => {
+let initialValues = {
+    is_active: "",
+    renter_selection: "",
+    renter_id: 0
+}
+
+const ScheduleBoatRentalPage = (props) => {
   const [user, token] = useAuth();
+  const { boatId } = useParams();
   const navigate = useNavigate();
+  const [boat, setBoat] = useState({});
   const [formData, handleInputChange, handleSubmit] = useCustomForm(
     initialValues,
     scheduleBoat
   );
 
-  const [boats, setBoats] = useState([]);
-
   useEffect(() => {
-    async function getBoatById(id){
-        try {
-            let response = await axios.get(`http://127.0.0.1:8000/api/boats/${id}`, {...boats, renter_selection:formData, is_active:formData}, {
-                headers: {
-                    Authorization: 'Bearer ' + token
-                },
-            });
-            setBoats(response.data);
-        } catch (error) {
-            console.log(error.message);
-        }
-    };
-    getBoatById();
-  }, [token]);
+    const fetchBoat = async () => {
+      try {
+        let response = await axios.get(
+          `http://127.0.0.1:8000/api/boats/${boatId}/`, 
+          {headers: {
+            Authorization: 'Bearer ' + token
+          },
+      }
+      );
+        setBoat(response.data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchBoat()
+  }, [token], [boatId])
 
-
-  async function scheduleBoat(id) {
+  async function scheduleBoat() {
     try {
       let response = await axios.put(
-        `http://127.0.0.1:8000/api/boats/${id}`,
-        formData,
+        `http://127.0.0.1:8000/api/boats/${boatId}/`,
+        {
+            ...boat, renter_selection: formData.renter_selection, is_active: formData.is_active, renter_id: formData.renter_id,
+        },
         {
           headers: {
             Authorization: "Bearer " + token,
           },
         }
       );
-      navigate("/api/boats/${id}");
+      navigate(`/rentalconfirmation`);
     } catch (error) {
       console.log(error.message);
     }
   }
 
+
   return (
     <div className="container">
-      <h2>Hello {user.first_name}!</h2>
+      <h2>Hello {user.first_name}! Your id is {user.id}</h2>
       <table>
         <thead>
           <tr>
@@ -71,8 +81,6 @@ const ScheduleBoatRental = (props) => {
         </table>
       <h3>Please enter your option below based on the options above!</h3>
       <form className="form" onSubmit={handleSubmit}>
-        {/* <h2>Hello {user.first_name}!</h2>
-        <h3>Please edit the information below!</h3> */}
         <label>
           Confirm Selection:{" "}
           <input
@@ -91,10 +99,37 @@ const ScheduleBoatRental = (props) => {
             onChange={handleInputChange}
           />
         </label>
+        <label>
+          Please Enter UserID From Above:{" "}
+          <input
+            type="number"
+            name="renter_id"
+            value={formData.renter_id}
+            onChange={handleInputChange}
+          />
+        </label>
         <button>Submit Selection from Choices Above</button>
       </form>
     </div>
   );
 };
 
-export default ScheduleBoatRental;
+export default ScheduleBoatRentalPage;
+
+//   useEffect(() => {
+//     async function getBoatById(id){
+//         try {
+//             let response = await axios.get(`http://127.0.0.1:8000/api/boats/${id}`, {...boats, renter_selection:formData, is_active:formData}, {
+//                 headers: {
+//                     Authorization: 'Bearer ' + token
+//                 },
+//             });
+//             setBoats(response.data);
+//         } catch (error) {
+//             console.log(error.message);
+//         }
+//     };
+//     getBoatById();
+//   }, [token]);}
+
+
