@@ -87,7 +87,8 @@ const SearchRentalPage = (props) => {
                       .includes(userInput.toLowerCase()) ||
                   boat.is_active
                       .toString()
-                      .includes(userInput.toLowerCase()) ||
+                      .includes(userInput.toLowerCase())
+                       ||
                   boat.renter_selection
                       .toLowerCase()
                       .includes(userInput.toLowerCase()) 

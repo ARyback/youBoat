@@ -7,7 +7,7 @@ import axios from "axios";
 let initialValues = {
     is_active: "",
     renter_selection: "",
-    renter_id: 0
+    renter: 0
 }
 
 const ScheduleBoatRentalPage = (props) => {
