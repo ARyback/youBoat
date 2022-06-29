@@ -2,6 +2,7 @@ import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
+import {KEY} from "../localKey.js"
 
 const AuthContext = createContext();
 
@@ -27,6 +28,13 @@ export const AuthProvider = ({ children }) => {
   const [isServerError, setIsServerError] = useState(false);
   const navigate = useNavigate();
 
+  const getCounty = async (registerData) => {
+   let county = await axios
+    .get(`https://maps.googleapis.com/maps/api/geocode/json?address=${registerData.address}${registerData.city}${registerData.state}${registerData.zipcode}&key=${KEY}`)
+    .then(res => res.data.results[0].address_components[3].long_name);
+  return county;
+  };
+
   const registerUser = async (registerData) => {
     try {
       let finalData = {
@@ -42,6 +50,7 @@ export const AuthProvider = ({ children }) => {
         number: registerData.number,
         is_owner: registerData.is_owner,
         is_renter: registerData.is_renter,
+        county: await getCounty(registerData),
       };
       console.log(finalData);
       let response = await axios.post(`${BASE_URL}/register/`, finalData);

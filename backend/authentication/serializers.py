@@ -32,7 +32,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
         # list as seen below
         fields = ('username', 'password', 'email',
                   'first_name', 'last_name', 'address',
-                  'city', 'state', 'zipcode', 'number',
+                  'city', 'state', 'zipcode', 'county', 'number',
                   'is_owner', 'is_renter',
                 )
 
@@ -47,6 +47,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
             city=validated_data['city'],
             state=validated_data['state'],
             zipcode=validated_data['zipcode'],
+            county=validated_data['county'],
             number=validated_data['number'],
             is_owner=validated_data['is_owner'],
             is_renter=validated_data['is_renter'],

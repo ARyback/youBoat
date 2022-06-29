@@ -9,6 +9,7 @@ class User(AbstractUser):
     city = models.CharField(max_length=255, null=True)
     state = models.CharField(max_length=255, null=True)
     zipcode = models.IntegerField(null=True)
+    county = models.CharField(max_length=255, null="", default=False)
     number = models.CharField(max_length=10, null=True)
     email = models.CharField(max_length=255, null=True)
     is_owner = models.BooleanField('owner status', default=False)

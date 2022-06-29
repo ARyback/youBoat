@@ -43,7 +43,7 @@ const ScheduleBoatRentalPage = (props) => {
       let response = await axios.put(
         `http://127.0.0.1:8000/api/boats/${boatId}/`,
         {
-            ...boat, renter_selection: formData.renter_selection, is_active: formData.is_active, renter_id: formData.renter_id,
+            ...boat, renter_selection: formData.renter_selection, is_active: formData.is_active, renter_id: user.id,
         },
         {
           headers: {
@@ -96,15 +96,6 @@ const ScheduleBoatRentalPage = (props) => {
             type="text"
             name="renter_selection"
             value={formData.renter_selection}
-            onChange={handleInputChange}
-          />
-        </label>
-        <label>
-          Please Enter UserID From Above:{" "}
-          <input
-            type="number"
-            name="renter_id"
-            value={formData.renter_id}
             onChange={handleInputChange}
           />
         </label>

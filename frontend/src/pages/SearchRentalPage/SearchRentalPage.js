@@ -3,16 +3,28 @@ import axios from "axios";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import RentBoatBar from "../../components/RentBoatBar/RentBoatBar";
 import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const SearchRentalPage = (props) => {
   const [boats, setboats] = useState(null);
   const [userInput, setUserInput] = useState("");
+  const [user, token] = useAuth();
   const navigate = useNavigate();
   const handleChange = (e) => {
     setUserInput(e.target.value);
   };
+  const [county, setCounty] = useState(null);
+
+  const getCounty = async() => {
+    await axios.get(`http://127.0.0.1:8000/api/auth/userview/`,
+      {headers: {
+      Authorization: 'Bearer ' + token
+      }
+    }).then(res => setCounty(res.data.county));
+  };
 
   useEffect(() => {
+    getCounty();
     getAllBoats();
   }, []);
 
