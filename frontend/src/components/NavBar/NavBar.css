@@ -8,6 +8,10 @@ li {
   font-size: 1.25rem;
 }
 
+li.brand-two {
+  font-size: 1.4rem;
+}
+
 .navBar {
   background: steelblue;
   box-shadow: 4px 2px 5px gray;

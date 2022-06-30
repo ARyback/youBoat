@@ -1,17 +1,13 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const HomePage = () => {
-  // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
-  // The "token" value is the JWT token that you will send in the header of any request requiring authentication
-  //TODO: Add an AddCars Page to add a car for a logged in user's garage
   const [user, token] = useAuth();
-  // const [cars, setCars] = useState([]);
   const [boats, setBoats] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchBoats = async () => {
@@ -31,29 +27,8 @@ const HomePage = () => {
   return (
     <div className="container">
       <h1>Home Page for {user.first_name}!</h1>
-      <Link to="/addboat">Add Boat</Link>
+      <h2>List of Boats</h2>
       <br />
-      <Link to="/editboat">Edit Boat</Link>
-      <br />
-      <Link to="/deleteboat">Delete Boat</Link>
-      <br />
-      <Link to="/searchrental">Search Rentals</Link>
-      <br />
-      <h3>List of Boats</h3>
-      <br />
-      {/* {boats &&
-        boats.map((boat) => (
-          <p key={boat.id}>
-            {boat.boat_type}
-            {boat.description} 
-            {boat.capaciity} 
-            {boat.city} 
-            {boat.state} 
-            {boat.lake}
-            {boat.boat_rating} 
-            <img src={boat.picture} /> 
-          </p>
-        ))} */}
       <table>
         <thead>
           <tr>
@@ -89,6 +64,8 @@ const HomePage = () => {
                     <td>{boat.option_two}</td>
                     <td>{boat.option_three}</td>
                     <td>{boat.is_active}</td>
+                    <td> <Link to={`/editboat/${boat.id}`}> <button onClick={() => navigate('/schedule')}>Edit Boat</button>
+                      </Link></td>
                   </tr>
             ))}
           </tbody>

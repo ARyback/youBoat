@@ -107,20 +107,5 @@ const ScheduleBoatRentalPage = (props) => {
 
 export default ScheduleBoatRentalPage;
 
-//   useEffect(() => {
-//     async function getBoatById(id){
-//         try {
-//             let response = await axios.get(`http://127.0.0.1:8000/api/boats/${id}`, {...boats, renter_selection:formData, is_active:formData}, {
-//                 headers: {
-//                     Authorization: 'Bearer ' + token
-//                 },
-//             });
-//             setBoats(response.data);
-//         } catch (error) {
-//             console.log(error.message);
-//         }
-//     };
-//     getBoatById();
-//   }, [token]);}
 
 

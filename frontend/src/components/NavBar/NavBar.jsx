@@ -15,6 +15,16 @@ const Navbar = () => {
             <b>React/Django JWT</b>
           </Link>
         </li>
+        <li className="brand-two">
+          <Link to="/addboat" style={{ textDecoration: "none", color: "white" }}>
+            <b>Add Boat</b>
+          </Link>
+        </li>
+        <li className="brand-two">
+          <Link to="/searchrental" style={{ textDecoration: "none", color: "white" }}>
+            <b>Search Rental</b>
+          </Link>
+        </li>
         <li>
           {user ? (
             <button onClick={logoutUser}>Logout</button>
