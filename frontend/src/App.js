@@ -12,6 +12,8 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import AddBoatPage from "./pages/AddBoatPage/AddBoatPage";
 import SearchRentalPage from "./pages/SearchRentalPage/SearchRentalPage";
 import ScheduleBoatRentalPage from "./pages/ScheduleBoatRentalPage/ScheduleBoatRentalPage";
+import EditBoatPage from "./pages/EditBoatPage/EditBoatPage";
+import DeleteBoatPage from "./pages/DeleteBoatPage/DeleteBoatPage";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -58,6 +60,8 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/addboat" element={<PrivateRoute><AddBoatPage /></PrivateRoute>} />
+        <Route path="/editboat" element={<PrivateRoute><EditBoatPage /></PrivateRoute>} />
+        <Route path="/deleteboat" element={<PrivateRoute><DeleteBoatPage /></PrivateRoute>} />
         <Route path="/searchrental" element={<PrivateRoute><SearchRentalPage /></PrivateRoute>} />
         <Route path="/schedule/:boatId" element={<PrivateRoute><ScheduleBoatRentalPage /></PrivateRoute>} />
         <Route path="/rentalconfirmation" element={<RentalConfirmationPage />} />

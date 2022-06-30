@@ -36,7 +36,7 @@ const ScheduleBoatRentalPage = (props) => {
       }
     }
     fetchBoat()
-  }, [token], [boatId])
+  }, [token, boatId])
 
   async function scheduleBoat() {
     try {

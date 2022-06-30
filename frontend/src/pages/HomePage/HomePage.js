@@ -33,7 +33,14 @@ const HomePage = () => {
       <h1>Home Page for {user.first_name}!</h1>
       <Link to="/addboat">Add Boat</Link>
       <br />
+      <Link to="/editboat">Edit Boat</Link>
+      <br />
+      <Link to="/deleteboat">Delete Boat</Link>
+      <br />
       <Link to="/searchrental">Search Rentals</Link>
+      <br />
+      <h3>List of Boats</h3>
+      <br />
       {/* {boats &&
         boats.map((boat) => (
           <p key={boat.id}>

@@ -38,6 +38,8 @@ button:hover {
   max-width: 600px;
   overflow: auto;
   text-align: center;
+  display: grid;
+  place-content: center;
 }
 
 .form {
@@ -56,3 +58,7 @@ button:hover {
   padding: 3px 7px;
   font-size: 17px;
 }
+
+
+
+
