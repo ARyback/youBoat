@@ -23,6 +23,7 @@ import Footer from "./components/Footer/Footer";
 import PrivateRoute from "./utils/PrivateRoute";
 import { BrowserRouter as Router } from "react-router-dom";
 import RentalConfirmationPage from "./pages/RentalConfirmationPage/RentalConfirmationPage";
+import DeleteConfirmationPage from "./pages/DeleteConfirmationPage/DeleteConfirmationPage";
 
 function App() {
 
@@ -37,10 +38,11 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/addboat" element={<PrivateRoute><AddBoatPage /></PrivateRoute>} />
         <Route path="/editboat/:boatId" element={<PrivateRoute><EditBoatPage /></PrivateRoute>} />
-        <Route path="/deleteboat/:boatId" element={<PrivateRoute><DeleteBoatPage /></PrivateRoute>} />
+        {/* <Route path="/deleteboat/:boatId" element={<PrivateRoute><DeleteBoatPage /></PrivateRoute>} /> */}
         <Route path="/searchrental" element={<PrivateRoute><SearchRentalPage /></PrivateRoute>} />
         <Route path="/schedule/:boatId" element={<PrivateRoute><ScheduleBoatRentalPage /></PrivateRoute>} />
         <Route path="/rentalconfirmation" element={<RentalConfirmationPage />} />
+        <Route path="/deleteconfirmation" element={<DeleteConfirmationPage />} />
       </Routes>
       <Footer />
     </div>

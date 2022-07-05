@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 const SearchRentalPage = (props) => {
-  const [boats, setboats] = useState(null);
+  const [boats, setBoats] = useState(null);
   const [userInput, setUserInput] = useState("");
   const [user, token] = useAuth();
   const navigate = useNavigate();
@@ -15,12 +15,15 @@ const SearchRentalPage = (props) => {
   };
   const [county, setCounty] = useState(null);
 
-  const getCounty = async() => {
-    await axios.get(`http://127.0.0.1:8000/api/auth/userview/`,
-      {headers: {
-      Authorization: 'Bearer ' + token
-      }
-    }).then(res => setCounty(res.data.county));
+  const getCounty = async () => {
+    let response = await axios
+      .get(`http://127.0.0.1:8000/api/auth/userview/`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => setCounty(res.data.county));
+      return response;
   };
 
   useEffect(() => {
@@ -30,17 +33,21 @@ const SearchRentalPage = (props) => {
 
   async function getAllBoats() {
     try {
-    let response = await axios.get("http://127.0.0.1:8000/api/boats/all/");
-    setboats(response.data);
-    } catch (error){
-        console.log(error.message);
+      let response = await axios.get("http://127.0.0.1:8000/api/boats/all/");
+      setBoats(response.data);
+    } catch (error) {
+      console.log(error.message);
     }
   }
 
   return (
     <>
-    <div>
-      <SearchBar userInput={userInput} setUserInput={setUserInput} handleChange={handleChange}/>
+      <div>
+        <SearchBar
+          userInput={userInput}
+          setUserInput={setUserInput}
+          handleChange={handleChange}
+        />
         <table>
           <thead>
             <tr>
@@ -64,7 +71,9 @@ const SearchRentalPage = (props) => {
             {boats &&
               boats
                 .filter((boat) =>
-                  boat.boat_name
+                  // boat.city
+                  //   .includes(getCounty()) &&
+                  (boat.boat_name
                     .toLowerCase()
                     .includes(userInput.toLowerCase()) ||
                   boat.boat_type
@@ -73,37 +82,26 @@ const SearchRentalPage = (props) => {
                   boat.description
                     .toLowerCase()
                     .includes(userInput.toLowerCase()) ||
-                  boat.capacity
-                    .toString()
-                    .includes(userInput.toLowerCase()) ||
+                  boat.capacity.toString().includes(userInput.toLowerCase()) ||
                   boat.boat_rating
                     .toLowerCase()
                     .includes(userInput.toLowerCase()) ||
-                  boat.city
-                    .toLowerCase()
-                    .includes(userInput.toLowerCase()) ||
-                  boat.state
-                    .toLowerCase()
-                    .includes(userInput.toLowerCase()) ||
-                  boat.lake
-                      .toLowerCase()
-                      .includes(userInput.toLowerCase()) ||
+                  boat.city.toLowerCase().includes(userInput.toLowerCase()) ||
+                  boat.state.toLowerCase().includes(userInput.toLowerCase()) ||
+                  boat.lake.toLowerCase().includes(userInput.toLowerCase()) ||
                   boat.option_one
-                      .toLowerCase()
-                      .includes(userInput.toLowerCase()) ||
+                    .toLowerCase()
+                    .includes(userInput.toLowerCase()) ||
                   boat.option_two
-                      .toLowerCase()
-                      .includes(userInput.toLowerCase()) ||
+                    .toLowerCase()
+                    .includes(userInput.toLowerCase()) ||
                   boat.option_three
-                      .toLowerCase()
-                      .includes(userInput.toLowerCase()) ||
-                  boat.is_active
-                      .toString()
-                      .includes(userInput.toLowerCase())
-                       ||
+                    .toLowerCase()
+                    .includes(userInput.toLowerCase()) ||
+                  boat.is_active.toString().includes(userInput.toLowerCase()) ||
                   boat.renter_selection
-                      .toLowerCase()
-                      .includes(userInput.toLowerCase()) 
+                    .toLowerCase()
+                    .includes(userInput.toLowerCase()))
                     ? boat
                     : null
                 )
@@ -118,14 +116,28 @@ const SearchRentalPage = (props) => {
                       <td>{boat.city}</td>
                       <td>{boat.state}</td>
                       <td>{boat.lake}</td>
-                      <td><img src={boat.picture} alt="This is a boat" width="100" height="100" /></td>
+                      <td>
+                        <img
+                          src={boat.picture}
+                          alt="This is a boat"
+                          width="100"
+                          height="100"
+                        />
+                      </td>
                       <td>{boat.option_one}</td>
                       <td>{boat.option_two}</td>
                       <td>{boat.option_three}</td>
                       <td>{boat.is_active.toString()}</td>
                       <td>{boat.renter_selection}</td>
-                      <td> <Link to={`/schedule/${boat.id}`}> <button onClick={() => navigate('/schedule')}>Schedule</button>
-                      </Link></td>
+                      <td>
+                        {" "}
+                        <Link to={`/schedule/${boat.id}`}>
+                          {" "}
+                          <button onClick={() => navigate(`/schedule/${boat.id}`)}>
+                            Schedule
+                          </button>
+                        </Link>
+                      </td>
                     </tr>
                   );
                 })}
@@ -137,11 +149,3 @@ const SearchRentalPage = (props) => {
 };
 
 export default SearchRentalPage;
-
-
-
-     
-          
-
-
-  
