@@ -26,6 +26,8 @@ const HomePage = () => {
     };
     fetchBoats();
   }, [token]);
+
+  
   return (
     <div className="container">
       <h1>Home Page for {user.first_name}</h1>
@@ -79,8 +81,8 @@ const HomePage = () => {
                       Edit Boat
                     </button>
                   </Link>
-                 <td><DeleteBoatButton id={boat.id} setBoats={setBoats}/></td>
                  </td>
+                 <td><DeleteBoatButton id={boat.id} setBoats={setBoats}/></td>
                 {/* <td>
                   {" "}
                   <Link to={`/deleteboat/${boat.id}`}>

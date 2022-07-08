@@ -3,11 +3,11 @@ import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import { useParams } from 'react-router-dom';
 
-const DeleteBoatButton = () => {
+const DeleteBoatButton = (props) => {
 
   const [user, token] = useAuth();
   const [boats, setBoats] = useState([]);
-  const { boatId } = useParams();
+//   const { boatId } = useParams();
 
   async function deleteBoat(boatId){
     try {
@@ -16,14 +16,14 @@ const DeleteBoatButton = () => {
                 Authorization: 'Bearer ' + token
             }
         })
-        boatId.setSongs(response.data);
+        props.setSongs(response.data);
     } catch (error) {
         console.log(error.message);
     }
 }
     return ( 
         <div>
-            <button onClick={() => deleteBoat(boatId)}>Delete</button>
+            <button onClick={() => deleteBoat(props.boatId)}>Delete</button>
         </div>
      );
 }
