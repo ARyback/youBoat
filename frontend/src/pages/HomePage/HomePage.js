@@ -82,12 +82,12 @@ const HomePage = () => {
                     </button>
                   </Link>
                  </td>
-                 <td><DeleteBoatButton id={boat.id} setBoats={setBoats}/></td>
+                 <td><DeleteBoatButton boatId={boat.id} setBoats={setBoats}/></td>
                 {/* <td>
                   {" "}
                   <Link to={`/deleteboat/${boat.id}`}>
                     {" "}
-                    <button onClick={() => navigate(`/deleteboat/`)}>
+                    <button onClick={() => navigate(`/deleteboat/`)}>inc
                       Delete Boat
                     </button>
                   </Link>

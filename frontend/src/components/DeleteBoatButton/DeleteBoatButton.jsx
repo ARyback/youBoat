@@ -11,12 +11,13 @@ const DeleteBoatButton = (props) => {
 
   async function deleteBoat(boatId){
     try {
-        let response = await axios.delete(`http://127.0.0.1:8000/api/boats/${boatId}`, {
+        let response = await axios.delete(`http://127.0.0.1:8000/api/boats/${boatId}/`, {
             headers: {
                 Authorization: 'Bearer ' + token
             }
         })
-        props.setSongs(response.data);
+        props.setBoats(response.data);
+        console.log(boatId);
     } catch (error) {
         console.log(error.message);
     }
