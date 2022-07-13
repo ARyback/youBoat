@@ -58,7 +58,7 @@ const EditBoatPage = () => {
     editBoat
   );
 
-  async function editBoat() {
+  const editBoat = async () => {
     try {
       let response = await axios.put(
         `http://127.0.0.1:8000/api/boats/${boatId}/`,
@@ -100,9 +100,9 @@ const EditBoatPage = () => {
               {boat.boat_name}
               <input
                 type="text"
-                placeholder={boat.boat_name}
+                // placeholder={boat.boat_name}
                 name="boat_name"
-                value={boat.boat_name & formData.boat_name}
+                value={formData.boat_name}
                 onChange={handleInputChange}
               />
               </label>
