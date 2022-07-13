@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const DeleteBoatButton = (props) => {
 
   const [user, token] = useAuth();
   const [boats, setBoats] = useState([]);
-//   const { boatId } = useParams();
+  const navigate = useNavigate();
 
   async function deleteBoat(boatId){
     try {
@@ -16,8 +17,7 @@ const DeleteBoatButton = (props) => {
                 Authorization: 'Bearer ' + token
             }
         })
-        props.setBoats(response.data);
-        console.log(boatId);
+        props.fetchBoats();
     } catch (error) {
         console.log(error.message);
     }

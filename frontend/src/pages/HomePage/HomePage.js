@@ -10,20 +10,20 @@ const HomePage = () => {
   const [user, token] = useAuth();
   const [boats, setBoats] = useState([]);
   const navigate = useNavigate();
+  const fetchBoats = async () => {
+    try {
+      let response = await axios.get("http://127.0.0.1:8000/api/boats/", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
+      setBoats(response.data);
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
 
   useEffect(() => {
-    const fetchBoats = async () => {
-      try {
-        let response = await axios.get("http://127.0.0.1:8000/api/boats/", {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        });
-        setBoats(response.data);
-      } catch (error) {
-        console.log(error.response.data);
-      }
-    };
     fetchBoats();
   }, [token]);
 
@@ -82,16 +82,7 @@ const HomePage = () => {
                     </button>
                   </Link>
                  </td>
-                 <td><DeleteBoatButton boatId={boat.id} setBoats={setBoats}/></td>
-                {/* <td>
-                  {" "}
-                  <Link to={`/deleteboat/${boat.id}`}>
-                    {" "}
-                    <button onClick={() => navigate(`/deleteboat/`)}>inc
-                      Delete Boat
-                    </button>
-                  </Link>
-                </td> */}
+                 <td><DeleteBoatButton boatId={boat.id} fetchBoats={fetchBoats}/></td>
               </tr>
             ))}
         </tbody>
