@@ -44,7 +44,7 @@ const AddBoatPage = () => {
     return ( 
     <div className="container">
         <form className="form" onSubmit={handleSubmit}>
-        <h2>Hello {user.first_name}!</h2>
+        <h2>Hello {user.first_name}! Your county is {user.id}</h2>
         <h3>Please add your new boat in the form below</h3>
           <label>
           Boat Name:{" "}

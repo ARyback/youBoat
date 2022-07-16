@@ -58,27 +58,11 @@ const EditBoatPage = () => {
     editBoat
   );
 
-  const editBoat = async () => {
+  async function editBoat () {
     try {
       let response = await axios.put(
         `http://127.0.0.1:8000/api/boats/${boatId}/`,
-        {
-            ...boat,
-            boat_name: formData.boat_name, 
-            capacity: formData.capacity, 
-            description: formData.description, 
-            city: formData.city,
-            state: formData.state,
-            lake: formData.lake,
-            picture: formData.picture,
-            boat_rating: formData.boat_rating,
-            boat_type: formData.boat_type,
-            option_one: formData.option_one,
-            option_two: formData.option_two,
-            option_three: formData.option_three,
-            is_active: formData.is_active,
-            renter_selection: formData.renter_selection, 
-        },
+        formData,
         {
           headers: {
             Authorization: "Bearer " + token,
@@ -100,7 +84,7 @@ const EditBoatPage = () => {
               {boat.boat_name}
               <input
                 type="text"
-                // placeholder={boat.boat_name}
+                placeholder={boat.boat_name}
                 name="boat_name"
                 value={formData.boat_name}
                 onChange={handleInputChange}
@@ -108,60 +92,72 @@ const EditBoatPage = () => {
               </label>
               <label>
               Boat Type:{" "}
+              {boat.boat_type}
               <input
                 type="text"
+                placeholder={boat.boat_type}
                 name="boat_type"
                 value={formData.boat_type}
                 onChange={handleInputChange}
               />
               </label>
               <label>
-              Description:{" "}
+              Boat Description:{" "}
+              {boat.description}
               <input
                 type="text"
+                placeholder={boat.description}
                 name="description"
                 value={formData.description}
                 onChange={handleInputChange}
               />
             </label>
             <label>
-              Capacity:{" "}
+              Boat Capacity:{" "}
+              {boat.boat_capacity}
               <input
                 type="number"
+                placeholder={boat.capacity}
                 name="capacity"
                 value={formData.capacity}
                 onChange={handleInputChange}
               />
             </label>
             <label>
-              City:{" "}
+              Boat City:{" "}
+              {boat.city}
               <input
                 type="text"
+                placeholder={boat.city}
                 name="city"
                 value={formData.city}
                 onChange={handleInputChange}
               />
             </label>
             <label>
-              State{" "}
+              Boat State:{" "}
+              {boat.state}
               <input
                 type="text"
+                placeholder={boat.state}
                 name="state"
                 value={formData.state}
                 onChange={handleInputChange}
               />
             </label>
             <label>
-              Lake:{" "}
+              Boat Lake:{" "}
+              {boat.lake}
               <input
                 type="text"
+                placeholder={boat.lake}
                 name="lake"
                 value={formData.lake}
                 onChange={handleInputChange}
               />
             </label>
             <label>
-              Picture:{" "}
+              Boat Picture Url:{" "}
               <input
                 type="text"
                 name="picture"
@@ -171,35 +167,43 @@ const EditBoatPage = () => {
             </label>
             <label>
               Boat Rating:{" "}
+              {boat.boat_rating}
               <input
-                type="text"
+                type="number"
+                placeholder={boat.boat_rating}
                 name="boat_rating"
                 value={formData.boat_rating}
                 onChange={handleInputChange}
               />
             </label>
             <label>
-              Option One:{" "}
+              Time Option One:{" "}
+              {boat.option_one}
               <input
                 type="text"
+                placeholder={boat.option_one}
                 name="option_one"
                 value={formData.option_one}
                 onChange={handleInputChange}
               />
             </label>
             <label>
-              Option Two:{" "}
+              Time Option One:{" "}
+              {boat.option_two}
               <input
                 type="text"
+                placeholder={boat.option_two}
                 name="option_two"
                 value={formData.option_two}
                 onChange={handleInputChange}
               />
             </label>
             <label>
-              Option Three:{" "}
+              Time Option Three:{" "}
+              {boat.option_three}
               <input
                 type="text"
+                placeholder={boat.option_three}
                 name="option_three"
                 value={formData.option_three}
                 onChange={handleInputChange}
@@ -207,9 +211,10 @@ const EditBoatPage = () => {
             </label>
             <label>
               Renter Selection:{" "}
+              {boat.renter_selection}
               <input
                 type="text"
-                name="renter_selection"
+                placeholder={boat.renter_selection}
                 value={formData.renter_selection}
                 onChange={handleInputChange}
               />
@@ -219,6 +224,7 @@ const EditBoatPage = () => {
               <input
                 type="checkbox"
                 name="is_active"
+                placeholder={boat.is_active}
                 value={formData.is_active}
                 onChange={handleInputChange}
               />

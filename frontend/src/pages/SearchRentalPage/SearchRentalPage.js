@@ -14,6 +14,10 @@ const SearchRentalPage = (props) => {
     setUserInput(e.target.value);
   };
   const [county, setCounty] = useState(null);
+  // const logCounty = () => {
+  //   console.log(boats[0].county);
+  //   console.log(user.county);
+  // }
 
   const getCounty = async () => {
     let response = await axios
@@ -29,6 +33,7 @@ const SearchRentalPage = (props) => {
   useEffect(() => {
     getCounty();
     getAllBoats();
+    // logCounty();
   }, []);
 
   async function getAllBoats() {
@@ -71,8 +76,7 @@ const SearchRentalPage = (props) => {
             {boats &&
               boats
                 .filter((boat) =>
-                  // boat.city
-                  //   .includes(getCounty()) &&
+                  (boat.county === user.county &&
                   (boat.boat_name
                     .toLowerCase()
                     .includes(userInput.toLowerCase()) ||
@@ -101,7 +105,7 @@ const SearchRentalPage = (props) => {
                   boat.is_active.toString().includes(userInput.toLowerCase()) ||
                   boat.renter_selection
                     .toLowerCase()
-                    .includes(userInput.toLowerCase()))
+                    .includes(userInput.toLowerCase())))
                     ? boat
                     : null
                 )
