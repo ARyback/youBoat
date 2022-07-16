@@ -15,6 +15,8 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 
         token["username"] = user.username
         token["first_name"] = user.first_name
+        token["county"] = user.county
+        token["state"] = user.state
 
         return token
 

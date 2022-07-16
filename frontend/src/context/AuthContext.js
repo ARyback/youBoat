@@ -16,8 +16,8 @@ function setUserObject(user) {
     username: user.username,
     id: user.user_id,
     first_name: user.first_name,
-    // county: user.county,
-    // state: user.state,`
+    county: user.county,
+    state: user.state,
   };
 }
 
