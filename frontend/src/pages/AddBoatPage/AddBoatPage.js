@@ -12,6 +12,7 @@ let initialValues = {
     description: "", 
     city: "",
     state: "",
+    county: "",
     lake: "",
     picture: "",
     boat_rating: 0.00,
@@ -44,7 +45,7 @@ const AddBoatPage = () => {
     return ( 
     <div className="container">
         <form className="form" onSubmit={handleSubmit}>
-        <h2>Hello {user.first_name}! Your county is {user.state}</h2>
+        <h2>Hello {user.first_name}!</h2>
         <h3>Please add your new boat in the form below</h3>
           <label>
           Boat Name:{" "}
@@ -97,6 +98,15 @@ const AddBoatPage = () => {
             type="text"
             name="state"
             value={formData.state}
+            onChange={handleInputChange}
+          />
+        </label>
+        <label>
+          County{" "}
+          <input
+            type="text"
+            name="county"
+            value={formData.county}
             onChange={handleInputChange}
           />
         </label>
@@ -181,4 +191,3 @@ const AddBoatPage = () => {
 export default AddBoatPage;
 
 
-// imagePath: "https://images.unsplash.com/photo-1510525009512-ad7fc13eefab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"

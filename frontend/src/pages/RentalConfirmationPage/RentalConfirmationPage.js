@@ -1,8 +1,9 @@
 import React from 'react';
+import "./RentalConfirmationPage.css";
 
 const RentalConfirmationPage = () => {
     return ( 
-    <div>
+    <div class="rentalconfirmation">
         Rental confirmed!
     </div> );
 }

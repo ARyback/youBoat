@@ -9,13 +9,14 @@ const EditBoatPage = () => {
   const { boatId } = useParams();
   const navigate = useNavigate();
   const [boat, setBoat] = useState({});
-//   const [initialValues, setInitialValues] = useState({});
+
   let initialValues = {
     boat_name: boat.boat_name,
     capacity: boat.capacity, 
     description: boat.description, 
     city: boat.city,
     state: boat.state,
+    county: boat.county,
     lake: boat.lake,
     picture: boat.picture,
     boat_rating: boat.boat_rating,
@@ -26,11 +27,6 @@ const EditBoatPage = () => {
     is_active: boat.is_active,
     renter_selection: boat.renter_selection,
   };
-
-//   const idDeleter = (obj) => {
-//     delete obj.id;
-//     return obj;
-//   };
 
   useEffect(() => {
     const fetchBoat = async () => {
@@ -43,9 +39,6 @@ const EditBoatPage = () => {
       }
       );
         setBoat(response.data);
-        // setInitialValues({
-        //     ...idDeleter(response.data)
-        // })
       } catch (error) {
         console.log(error)
       }
@@ -142,6 +135,17 @@ const EditBoatPage = () => {
                 placeholder={boat.state}
                 name="state"
                 value={formData.state}
+                onChange={handleInputChange}
+              />
+            </label>
+            <label>
+              Boat County:{" "}
+              {boat.county}
+              <input
+                type="text"
+                placeholder={boat.county}
+                name="county"
+                value={formData.county}
                 onChange={handleInputChange}
               />
             </label>
