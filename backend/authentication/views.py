@@ -6,6 +6,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework import status
 User = get_user_model()
 # from .models import User
 from django.shortcuts import get_object_or_404
@@ -20,7 +21,7 @@ class RegisterView(generics.CreateAPIView):
     permission_classes = (AllowAny,)
     serializer_class = RegistrationSerializer
 
-@api_view(['GET', 'PUT'])
+@api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes([IsAuthenticated])
 def user_view(request):
     user = get_object_or_404(User, pk=request.user.id)
@@ -32,10 +33,25 @@ def user_view(request):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
+    elif request.method == 'DELETE':
+        user.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
-# @api_view(['GET'])
+
+
+# @api_view(['GET', 'PUT', 'DELETE'])
 # @permission_classes([IsAuthenticated])
-# def user_view(request):
-#     user = User.objects.filter(owner=request)
-#     serializer = RegistrationSerializer(user, many=True)
-#     return Response(serializer.data)
+# def boat_detail(request, pk):
+#     boat = get_object_or_404(Boat, pk=pk)
+#     if request.method == 'GET':
+#         serializer = BoatSerializer(boat)
+#         return Response(serializer.data)
+#     elif request.method == 'PUT':
+#         serializer = BoatSerializer(boat, data=request.data)
+#         serializer.is_valid(raise_exception=True)
+#         serializer.save(renter=request.user)
+#         return Response(serializer.data, status=status.HTTP_206_PARTIAL_CONTENT)
+#     elif request.method == 'DELETE':
+#         boat.delete()
+#         return Response(status=status.HTTP_204_NO_CONTENT)
+
