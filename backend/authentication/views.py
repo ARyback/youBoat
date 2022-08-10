@@ -39,19 +39,5 @@ def user_view(request):
 
 
 
-# @api_view(['GET', 'PUT', 'DELETE'])
-# @permission_classes([IsAuthenticated])
-# def boat_detail(request, pk):
-#     boat = get_object_or_404(Boat, pk=pk)
-#     if request.method == 'GET':
-#         serializer = BoatSerializer(boat)
-#         return Response(serializer.data)
-#     elif request.method == 'PUT':
-#         serializer = BoatSerializer(boat, data=request.data)
-#         serializer.is_valid(raise_exception=True)
-#         serializer.save(renter=request.user)
-#         return Response(serializer.data, status=status.HTTP_206_PARTIAL_CONTENT)
-#     elif request.method == 'DELETE':
-#         boat.delete()
-#         return Response(status=status.HTTP_204_NO_CONTENT)
+
 

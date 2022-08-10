@@ -33,7 +33,7 @@ class Boat(models.Model):
     option_two = models.CharField(null=True, max_length=255)
     option_three = models.CharField(null=True, max_length=255)
     renter_selection = models.CharField(null=True, max_length=255)
-    is_active = models.BooleanField('active status', null="", default=False)
+    is_active = models.BooleanField('active status', null=True, default=False)
 
 
     
