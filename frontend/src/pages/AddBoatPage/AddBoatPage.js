@@ -20,7 +20,7 @@ let initialValues = {
     option_one: "",
     option_two: "",
     option_three: "",
-    is_active: "",
+    is_active: false,
     renter_selection: "",
 };
 
